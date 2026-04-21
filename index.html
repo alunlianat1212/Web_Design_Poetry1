@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Lentera Sendu · Katalog Puisi</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fefaf5;
+            font-family: 'Inter', sans-serif;
+            color: #2c241a;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0e7dd;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cfbc9f;
+            border-radius: 10px;
+        }
+
+        /* header */
+        .lentera-header {
+            background: #fffbf7;
+            border-bottom: 1px solid #eee3d6;
+            padding: 2rem 2rem 1rem;
+            text-align: center;
+        }
+        .brand {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .brand h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            color: #8f6842;
+        }
+        .brand i {
+            font-size: 1.5rem;
+            color: #ccb38c;
+            opacity: 0.7;
+        }
+        .tagline-poetic {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: #b69872;
+            margin-top: 8px;
+            font-weight: 300;
+            border-top: 1px solid #eee0d2;
+            display: inline-block;
+            padding-top: 8px;
+        }
+
+        .poetry-world {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 2rem 3rem;
+        }
+
+        /* carousel section */
+        .carousel-section {
+            margin-bottom: 3rem;
+        }
+        .carousel-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #9b7a58;
+            margin-bottom: 1.2rem;
+            border-left: 3px solid #e1cfb9;
+            padding-left: 1rem;
+        }
+        .swiper {
+            padding: 8px 0 30px;
+        }
+        .swiper-slide {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.6rem;
+            box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.03);
+            border: 1px solid #efe2d4;
+            height: auto;
+        }
+        .slide-poem-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #4f3a26;
+        }
+        .slide-meta {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.6rem 0 0.9rem;
+            font-size: 0.7rem;
+            color: #b4936d;
+            border-bottom: 1px dashed #f0e2d4;
+            padding-bottom: 0.4rem;
+        }
+        .slide-excerpt {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #5b4a38;
+            margin-bottom: 1.2rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .carousel-btn {
+            background: #f6efe7;
+            border: none;
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #846b49;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .carousel-btn:hover {
+            background: #ece0d4;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: #c8ae89;
+            background: rgba(255, 252, 245, 0.8);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            backdrop-filter: blur(2px);
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .swiper-pagination-bullet-active {
+            background: #c7aa82;
+        }
+
+        /* action bar */
+        .action-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.8rem 0 2rem;
+            background: #fffcf8;
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #eee2d4;
+        }
+        .btn-add {
+            background: #f1e7dd;
+            border: none;
+            padding: 0.55rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #755f43;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-add:hover { background: #e8dacb; }
+        .search-poetry {
+            background: #ffffff;
+            border-radius: 60px;
+            padding: 0.2rem 1rem;
+            border: 1px solid #eedfcb;
+            display: flex;
+            align-items: center;
+            width: 240px;
+        }
+        .search-poetry i { color: #c7aa81; margin-right: 8px; font-size: 0.8rem; }
+        .search-poetry input { border: none; background: transparent; width: 100%; outline: none; font-size: 0.8rem; }
+        .filter-tag-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .filter-chip {
+            background: transparent;
+            border: 1px solid #e8dbc9;
+            padding: 0.35rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #9a7d5c;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .filter-chip.active, .filter-chip:hover { background: #ede1d3; border-color: #d7c2a8; color: #5b422c; }
+
+        .stat-badge {
+            background: #fffbf5;
+            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            font-size: 0.7rem;
+            color: #a68966;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #efe3d6;
+        }
+
+        /* grid puisi */
+        .poems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+        .poem-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+            border: 1px solid #efe2d4;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+        .poem-card:hover { transform: translateY(-3px); border-color: #e1cfbb; box-shadow: 0 12px 24px -12px rgba(0,0,0,0.05);}
+        .poem-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; color: #4e3822; }
+        .poem-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.65rem; color: #ba9a74; margin: 0.5rem 0 0.9rem; border-bottom: 1px solid #f3e8dd; padding-bottom: 0.5rem;}
+        .poem-tag { background: #f7efe6; padding: 0.2rem 0.6rem; border-radius: 30px; font-size: 0.6rem; font-weight: 500; color: #8b6a48; }
+        .poem-excerpt { font-size: 0.85rem; line-height: 1.55; color: #5c4a36; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .poem-footer { display: flex; justify-content: flex-end; gap: 12px; border-top: 1px solid #f5eadf; padding-top: 12px; margin-top: 4px; }
+        .icon-btn {
+            background: none; border: none; color: #c7ad89; cursor: pointer; font-size: 0.8rem;
+            padding: 4px 8px; border-radius: 30px; transition: 0.2s;
+        }
+        .icon-btn:hover { background: #faf2ea; color: #9b774f; }
+        .empty-muse { text-align: center; padding: 2rem; background: #fffbf7; border-radius: 48px; color: #b4936d; grid-column: 1/-1; }
+
+        /* modal */
+        .modal-overlay {
+            display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+            background-color: rgba(245, 238, 228, 0.92); backdrop-filter: blur(6px);
+            justify-content: center; align-items: center; z-index: 2000;
+        }
+        .modal-card {
+            background: #fffefb; max-width: 540px; width: 90%; border-radius: 40px; padding: 2rem;
+            border: 1px solid #eedfcb; animation: fade 0.2s ease;
+        }
+        @keyframes fade { from { opacity:0; transform: scale(0.97);} to { opacity:1; transform: scale(1);}}
+        .modal-card h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 500; color: #5f462f; margin-bottom: 1rem;}
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { font-size: 0.7rem; font-weight: 600; color: #aa8864; text-transform: uppercase; letter-spacing: 0.5px;}
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; background: #fffcf8; border: 1px solid #ecdccb; border-radius: 24px;
+            padding: 0.7rem 1rem; outline: none; font-family: 'Inter', sans-serif; font-size: 0.85rem;
+        }
+        .modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 1.5rem;}
+        .btn-save { background: #e9ddcf; border: none; padding: 0.5rem 1.4rem; border-radius: 40px; font-weight: 500; color: #5a3f28; cursor: pointer;}
+        .btn-cancel { background: transparent; border: 1px solid #e3d3c1; padding: 0.5rem 1.4rem; border-radius: 40px; color: #9a7a59; cursor: pointer;}
+
+        .poetic-footer {
+            background: #fefbf7;
+            border-top: 1px solid #eee1d3;
+            padding: 2rem 1rem 1.8rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #c0a27e;
+        }
+        @media (max-width: 700px) {
+            .poetry-world { padding: 1rem; }
+            .action-bar { flex-direction: column; align-items: stretch; border-radius: 32px;}
+        }
+    </style>
+</head>
+<body>
+
+<header class="lentera-header">
+    <div class="brand">
+        <i class="fas fa-feather-alt"></i>
+        <h1>Lentera Sendu</h1>
+        <i class="fas fa-book-open"></i>
+    </div>
+    <div class="tagline-poetic">merangkai sunyi menjadi bait yang abadi</div>
+</header>
+
+<div class="poetry-world">
+    <div class="carousel-section">
+        <div class="carousel-title">Bacaan pilu & rindu</div>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper" id="carouselWrapper"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <button class="btn-add" id="openAddPoemBtn"><i class="fas fa-pen-fancy"></i> Tulis puisi</button>
+        <div class="search-poetry">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchPoemInput" placeholder="Cari judul atau isi...">
+        </div>
+        <div class="filter-tag-group" id="tagFilterGroup">
+            <button class="filter-chip active" data-tag="all">Semua</button>
+            <button class="filter-chip" data-tag="Cinta">Cinta</button>
+            <button class="filter-chip" data-tag="Alam">Alam</button>
+            <button class="filter-chip" data-tag="Renungan">Renungan</button>
+            <button class="filter-chip" data-tag="Kehidupan">Kehidupan</button>
+            <button class="filter-chip" data-tag="Luka">Luka</button>
+        </div>
+    </div>
+
+    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-bottom: 1.5rem;">
+        <div class="stat-badge"><i class="far fa-bookmark"></i> <span id="totalPoemsCount">0</span> puisi</div>
+        <div class="stat-badge"><i class="far fa-tags"></i> <span id="uniqueTagsCount">0</span> suasana</div>
+    </div>
+
+    <div id="poemsGridContainer" class="poems-grid"></div>
+</div>
+
+<footer class="poetic-footer">
+    <div>Lentera Sendu · ruang sunyi untuk puisi dan ingatan yang tak usai</div>
+    <div style="margin-top: 0.5rem; font-size: 0.65rem;">Klik ikon suara pada puisi untuk mendengar pembacaan lembut</div>
+</footer>
+
+<!-- modal tambah/edit -->
+<div id="poemModal" class="modal-overlay">
+    <div class="modal-card">
+        <h2 id="modalTitle">Tulisan baru</h2>
+        <form id="poemForm">
+            <div class="form-group"><label>Judul</label><input type="text" id="poemTitle" placeholder="Judul puisi" required></div>
+            <div class="form-group"><label>Suasana</label><select id="poemTag"><option value="Cinta">Cinta</option><option value="Alam">Alam</option><option value="Renungan">Renungan</option><option value="Kehidupan">Kehidupan</option><option value="Luka">Luka</option></select></div>
+            <div class="form-group"><label>Isi puisi</label><textarea id="poemBody" rows="5" placeholder="Tulis bait-bait..." required></textarea></div>
+            <input type="hidden" id="editId">
+            <div class="modal-actions"><button type="button" class="btn-cancel" id="closeModalBtn">Batal</button><button type="submit" class="btn-save">Simpan</button></div>
+        </form>
+    </div>
+</div>
+
+<!-- modal detail -->
+<div id="detailModal" class="modal-overlay">
+    <div class="modal-card">
+        <h2 id="detailTitle" style="font-size:1.5rem;"></h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0 1rem;">
+            <span id="detailTag" class="poem-tag"></span>
+            <span id="detailDate" style="font-size:0.65rem; color:#b79773;"></span>
+            <button id="voiceReadBtnDetail" class="icon-btn" style="background:#f6ede4; padding:0.2rem 0.8rem; border-radius: 30px;"><i class="fas fa-volume-up"></i> Suara</button>
+        </div>
+        <div id="detailBody" style="font-family: 'Playfair Display', serif; line-height:1.7; font-size:0.95rem; max-height:55vh; overflow-y:auto; white-space:pre-wrap; color:#3e2e1f;"></div>
+        <div class="modal-actions" style="margin-top:1.5rem;"><button class="btn-cancel" id="closeDetailBtn">Tutup</button><button id="editFromDetailBtn" class="btn-save">Edit puisi</button></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    // Data puisi
+    let poems = [
+        { id: 1, title: "Senja yang Terlambat", tag: "Alam", body: "senja yang merah merambat di balik bukit\nseperti rahasia yang tak sampai terucap\nangin membisikkan namamu pelan\nnamun aku sudah lupa bagaimana cara pulang", createdAt: new Date(2025, 1, 14).toISOString() },
+        { id: 2, title: "Kepadamu yang Hebat", tag: "Cinta", body: "kita adalah dua garis sejajar\nnamun pernah singgah di ruang yang sama\nkini hanya bayangmu yang tersisa\ndi setiap rindu yang kusimpan rapi.", createdAt: new Date(2025, 2, 5).toISOString() },
+        { id: 3, title: "Ruang Sunyi", tag: "Renungan", body: "di kamar yang sempit\naku belajar merangkai sunyi\nmenjadi bait-bait yang tak pernah usai\ndan puisi adalah satu-satunya jendela.", createdAt: new Date(2025, 0, 20).toISOString() },
+        { id: 4, title: "akar dan debu", tag: "Kehidupan", body: "kita tumbuh dari akar yang sama\nnamun berbuah di tanah yang berbeda\nbiarkan waktu memanen rindu\nsebelum semua menjadi debu yang berserak.", createdAt: new Date(2024, 11, 1).toISOString() },
+        { id: 5, title: "hujan di bulan april", tag: "Luka", body: "rindu datang bersama hujan\nmembasahi luka yang tak kunjung kering\napakah kau juga mendengar gemuruh\ndi antara sunyi yang kita ciptakan?", createdAt: new Date(2025, 3, 10).toISOString() }
+    ];
+
+    let currentFilter = "all";
+    let currentSearch = "";
+    let swiperInstance = null;
+    let activeSpeech = null;
+
+    function formatDate(iso) { return new Date(iso).toLocaleDateString('id-ID', { year:'numeric', month:'long', day:'numeric' }); }
+    function escapeHtml(str) { return str.replace(/[&<>]/g, m => m=='&'?'&amp;':m=='<'?'&lt;':'&gt;'); }
+
+    function speakPoem(title, content) {
+        if(window.speechSynthesis) {
+            if(activeSpeech) window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(`${title}. ${content}`);
+            utterance.lang = 'id-ID';
+            utterance.rate = 0.88;
+            activeSpeech = utterance;
+            window.speechSynthesis.speak(utterance);
+            showToast("Membacakan puisi...", "#f0e6dc");
+        } else { alert("Speech tidak didukung browser."); }
+    }
+
+    function showToast(msg, bg) {
+        let toast = document.createElement('div');
+        toast.innerText = msg;
+        toast.style.cssText = `position:fixed; bottom:25px; left:50%; transform:translateX(-50%); background:${bg}; color:#6b4f33; padding:6px 20px; border-radius:60px; font-size:0.7rem; z-index:2100; backdrop-filter:blur(4px); border:1px solid #eedfcb;`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 1800);
+    }
+
+    // ========== CAROUSEL REFRESH FIX ==========
+    function renderCarousel() {
+        const wrapper = document.getElementById('carouselWrapper');
+        if(!wrapper) return;
+        
+        // ambil 6 puisi terbaru (atau semua jika kurang)
+        const featured = [...poems].reverse().slice(0, 6);
+        if(featured.length === 0) {
+            wrapper.innerHTML = '<div class="swiper-slide">Belum ada puisi</div>';
+        } else {
+            wrapper.innerHTML = featured.map(p => `
+                <div class="swiper-slide">
+                    <div class="slide-poem-title">${escapeHtml(p.title)}</div>
+                    <div class="slide-meta"><span>${p.tag}</span><span>${formatDate(p.createdAt)}</span></div>
+                    <div class="slide-excerpt">${escapeHtml(p.body.substring(0, 100))}${p.body.length>100?'…':''}</div>
+                    <button class="carousel-btn read-carousel-btn" data-id="${p.id}">Baca selengkapnya</button>
+                </div>
+            `).join('');
+        }
+        
+        // Re-initialize Swiper: destroy old, create new
+        if(swiperInstance) {
+            swiperInstance.destroy(true, true);
+        }
+        
+        swiperInstance = new Swiper('.mySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+        });
+        
+        // attach event listeners ke tombol carousel
+        document.querySelectorAll('.read-carousel-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const id = parseInt(btn.getAttribute('data-id'));
+                openDetailPoem(id);
+            });
+        });
+    }
+
+    // render grid puisi
+    function renderPoems() {
+        const container = document.getElementById('poemsGridContainer');
+        let filtered = poems.filter(p => {
+            if(currentFilter !== "all" && p.tag !== currentFilter) return false;
+            const q = currentSearch.toLowerCase();
+            if(q) return p.title.toLowerCase().includes(q) || p.body.toLowerCase().includes(q);
+            return true;
+        });
+        document.getElementById('totalPoemsCount').innerText = poems.length;
+        document.getElementById('uniqueTagsCount').innerText = [...new Set(poems.map(p=>p.tag))].length;
+
+        if(filtered.length === 0) {
+            container.innerHTML = `<div class="empty-muse">Belum ada puisi yang sesuai dengan pencarianmu.</div>`;
+            return;
+        }
+        container.innerHTML = filtered.map(p => {
+            let excerpt = p.body.length > 100 ? p.body.slice(0,100)+"…" : p.body;
+            return `
+                <div class="poem-card">
+                    <div class="poem-title">${escapeHtml(p.title)}</div>
+                    <div class="poem-meta"><span>${formatDate(p.createdAt)}</span><span class="poem-tag">${p.tag}</span></div>
+                    <div class="poem-excerpt">${escapeHtml(excerpt).replace(/\n/g,'<br>')}</div>
+                    <div class="poem-footer">
+                        <button class="icon-btn read-btn" data-id="${p.id}"><i class="fas fa-book-open"></i> Baca</button>
+                        <button class="icon-btn voice-btn" data-id="${p.id}" data-title="${escapeHtml(p.title)}"><i class="fas fa-volume-up"></i> Suara</button>
+                        <button class="icon-btn edit-btn" data-id="${p.id}"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="icon-btn delete-btn" data-id="${p.id}"><i class="fas fa-trash-alt"></i> Hapus</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        document.querySelectorAll('.read-btn').forEach(btn => btn.addEventListener('click', (e) => { const id = parseInt(btn.dataset.id); openDetailPoem(id); }));
+        document.querySelectorAll('.voice-btn').forEach(btn => btn.addEventListener('click', (e) => { const id = parseInt(btn.dataset.id); const poem = poems.find(p=>p.id===id); if(poem) speakPoem(poem.title, poem.body); }));
+        document.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', (e) => { const id = parseInt(btn.dataset.id); openEditPoem(id); }));
+        document.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', (e) => { const id = parseInt(btn.dataset.id); if(confirm("Hapus puisi ini?")){ poems = poems.filter(p=>p.id!==id); renderPoems(); renderCarousel(); showToast("Puisi terhapus", "#efe3d6"); } }));
+    }
+
+    function openDetailPoem(id) {
+        const poem = poems.find(p=>p.id===id);
+        if(!poem) return;
+        document.getElementById('detailTitle').innerText = poem.title;
+        document.getElementById('detailTag').innerHTML = poem.tag;
+        document.getElementById('detailDate').innerHTML = formatDate(poem.createdAt);
+        document.getElementById('detailBody').innerHTML = escapeHtml(poem.body).replace(/\n/g,'<br>');
+        const modal = document.getElementById('detailModal');
+        modal.style.display = 'flex';
+        
+        const voiceBtn = document.getElementById('voiceReadBtnDetail');
+        const newVoice = voiceBtn.cloneNode(true);
+        voiceBtn.parentNode.replaceChild(newVoice, voiceBtn);
+        newVoice.addEventListener('click', () => speakPoem(poem.title, poem.body));
+        
+        const editDetail = document.getElementById('editFromDetailBtn');
+        const newEdit = editDetail.cloneNode(true);
+        editDetail.parentNode.replaceChild(newEdit, editDetail);
+        newEdit.addEventListener('click', () => { modal.style.display = 'none'; openEditPoem(id); });
+        
+        document.getElementById('closeDetailBtn').onclick = () => modal.style.display = 'none';
+        window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
+    }
+
+    function openEditPoem(id) {
+        const poem = poems.find(p=>p.id===id);
+        if(!poem) return;
+        document.getElementById('modalTitle').innerText = "Sunting puisi";
+        document.getElementById('poemTitle').value = poem.title;
+        document.getElementById('poemTag').value = poem.tag;
+        document.getElementById('poemBody').value = poem.body;
+        document.getElementById('editId').value = id;
+        document.getElementById('poemModal').style.display = 'flex';
+    }
+
+    function resetModalForm() {
+        document.getElementById('poemTitle').value = '';
+        document.getElementById('poemBody').value = '';
+        document.getElementById('editId').value = '';
+        document.getElementById('modalTitle').innerText = "Tulisan baru";
+        document.getElementById('poemTag').value = "Cinta";
+    }
+
+    function closeModal() { document.getElementById('poemModal').style.display = 'none'; resetModalForm(); }
+
+    function savePoem(e) {
+        e.preventDefault();
+        const title = document.getElementById('poemTitle').value.trim();
+        const tag = document.getElementById('poemTag').value;
+        const body = document.getElementById('poemBody').value.trim();
+        if(!title || !body) { alert("Judul dan isi puisi harus diisi."); return; }
+        const editIdVal = document.getElementById('editId').value;
+        if(editIdVal) {
+            const idx = poems.findIndex(p=>p.id === parseInt(editIdVal));
+            if(idx !== -1) poems[idx] = { ...poems[idx], title, tag, body, updatedAt: new Date().toISOString() };
+            showToast("Puisi diperbarui", "#e7dacb");
+        } else {
+            const newId = poems.length>0 ? Math.max(...poems.map(p=>p.id))+1 : 6;
+            poems.push({ id: newId, title, tag, body, createdAt: new Date().toISOString() });
+            showToast("Puisi tersimpan", "#e7dacb");
+        }
+        closeModal();
+        renderPoems();
+        renderCarousel();  // ini akan mereset swiper dengan data baru
+    }
+
+    function initEvents() {
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+                chip.classList.add('active');
+                currentFilter = chip.getAttribute('data-tag');
+                renderPoems();
+            });
+        });
+        document.getElementById('searchPoemInput').addEventListener('input', (e) => { currentSearch = e.target.value; renderPoems(); });
+        document.getElementById('openAddPoemBtn').addEventListener('click', () => { resetModalForm(); document.getElementById('poemModal').style.display = 'flex'; });
+        document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+        document.getElementById('poemForm').addEventListener('submit', savePoem);
+        window.addEventListener('click', (e) => { if(e.target === document.getElementById('poemModal')) closeModal(); });
+    }
+
+    function init() {
+        renderPoems();
+        renderCarousel();  // swiper dibuat pertama kali di sini
+        initEvents();
+    }
+    init();
+</script>
+</body>
+</html>
